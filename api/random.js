@@ -9,9 +9,30 @@ const require = createRequire(import.meta.url);
 // 例如：['cover1.jpg', 'photo2.png', 'bg3.jpeg']
 const IMAGE_FILES = [
   // 👇👇👇 在这里填入你的图片文件名 (只需文件名，不需要路径) 👇👇👇
-  '10199.jpeg', 
-  'public10020.jpeg',
-  'public10176.jpeg'
+'public10020.jpeg',
+'public10176.jpg', 
+'public10186.jpeg',
+'public10198.jpeg',
+'public10199.jpeg',
+'public10203.jpg', 
+'public10212.jpeg',
+'public10214.jpeg',
+'public10221.jpeg',
+'public10288.jpeg',
+'public10289.jpeg',
+'public10302.jpeg',
+'public10307.jpeg',
+'public10311.jpg', 
+'public10312.jpeg',
+'public10313.jpeg',
+'public10339.jpeg',
+'public10348.jpeg',
+'public10366.jpeg',
+'public10373.jpeg',
+'public10397.jpeg',
+'public10398.jpeg',
+'public10400.jpeg'
+
   // 👆👆👆 记得用逗号分隔，最后一个后面不要逗号 👆👆👆
 ];
 
