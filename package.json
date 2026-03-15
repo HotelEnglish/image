@@ -1,0 +1,21 @@
+{
+  "name": "image",
+  "version": "1.0.0",
+  "description": "上传一些图片，做一个随机显示的API接入NotionNext，在发布博客文章能自动随机显示封面。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HotelEnglish/image.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HotelEnglish/image/issues"
+  },
+  "homepage": "https://github.com/HotelEnglish/image#readme"
+}
