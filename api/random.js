@@ -32,40 +32,31 @@ const IMAGE_FILES = [
 'public10397.jpeg',
 'public10398.jpeg',
 'public10400.jpeg'
-
-  // 👆👆👆 记得用逗号分隔，最后一个后面不要逗号 👆👆👆
+  // 👆👆👆 确保最后一个文件名后面没有逗号 👆👆👆
 ];
 
-export default async function handler(req, res) {
-  // 设置 CORS 头 (可选，但推荐)
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  
-  // 设置禁止缓存头 (确保每次都是随机的)
+export default function handler(req, res) {
+  // 1. 检查是否有图片
+  if (!images || images.length === 0) {
+    return res.status(404).json({ error: 'No images configured.' });
+  }
+
+  // 2. 随机选择一个
+  const randomIndex = Math.floor(Math.random() * images.length);
+  const imageName = images[randomIndex];
+
+  // 3. 设置响应头：禁止缓存 (关键！否则总是显示同一张)
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   res.setHeader('Pragma', 'no-cache');
   res.setHeader('Expires', '0');
+  
+  // 4. 设置 CORS (可选，防止跨域问题)
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
-  try {
-    if (IMAGE_FILES.length === 0) {
-      console.error('Error: No images configured in IMAGE_FILES array.');
-      return res.status(404).json({ error: 'No images found. Please update the code with your image filenames.' });
-    }
-
-    // 随机选择一个索引
-    const randomIndex = Math.floor(Math.random() * IMAGE_FILES.length);
-    const selectedImage = IMAGE_FILES[randomIndex];
-
-    // 构建重定向 URL
-    // Vercel 会自动将 public 目录映射到根路径
-    const imageUrl = `/${selectedImage}`;
-
-    console.log(`Redirecting to: ${imageUrl}`);
-    
-    // 执行 302 重定向
-    return res.redirect(302, imageUrl);
-
-  } catch (error) {
-    console.error('Critical Error in random API:', error);
-    return res.status(500).json({ error: 'Internal Server Error', details: error.message });
-  }
+  // 5. 执行重定向
+  // Vercel 会自动把 public/image.jpg 映射到 /image.jpg
+  const imageUrl = `/${imageName}`;
+  
+  console.log(`Redirecting to: ${imageUrl}`);
+  return res.redirect(302, imageUrl);
 }
